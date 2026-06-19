@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="hero" class="hero">
+    <div class="container hero-container">
+        <div class="hero-content reveal-up">
+            <div class="badge">Aspiring Web Developer 🚀</div>
+            <h1 class="hero-title">I craft <span class="highlight-text">digital experiences</span> with calm precision.
+            </h1>
+            <p class="hero-subtitle">
+                Hi, I'm Lohesvar. A web developer blending modern aesthetics with futuristic engineering. Welcome to my
+                creative space. ✌️
+            </p>
+            <div class="hero-cta">
+                <a href="#skills" class="btn btn-primary">View Skills</a>
+                <a href="#works" class="btn btn-outline">View Works</a>
+            </div>
+        </div>
+    </div>
+    <!-- Abstract ambient background elements are handled in CSS -->
+</section>
+
+<!-- About Section -->
+<section id="about" class="about section-padding">
+    <div class="container about-container reveal-up">
+        <div class="section-header">
+            <h2>Quiet Confidence.</h2>
+            <p class="section-subtitle">My philosophy & approach</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I believe in design that breathes. My style is rooted in minimalism, utilizing dark aesthetics,
+                    subtle glassmorphism, and cinematic typography to create immersive digital spaces.</p>
+                <p>I focus on building scalable, futuristic web applications that aren't just functional, but
+                    emotionally engaging. I am constantly learning and exploring new technologies.</p>
+            </div>
+            <div class="about-visual">
+                <div class="glass-panel floating-element">
+                    <div class="code-snippet">
+                        <span class="keyword">const</span> <span class="variable">mindset</span> = {
+                        <br>&nbsp;&nbsp;style: <span class="string">'calm & minimal'</span>,
+                        <br>&nbsp;&nbsp;focus: <span class="string">'futuristic'</span>,
+                        <br>&nbsp;&nbsp;craft: <span class="string">'premium quality'</span>
+                        <br>};
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="skills section-padding bg-alt">
+    <div class="container skills-container reveal-up">
+        <div class="section-header text-center">
+            <h2>Technical Arsenal.</h2>
+            <p class="section-subtitle">Tools I use to build the future</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category glass-card">
+                <h3>Frontend</h3>
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript </span>
+                </div>
+            </div>
+            <div class="skill-category glass-card">
+                <h3>Backend</h3>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">C</span>
+                    <span class="tag">C++</span>
+                </div>
+            </div>
+            <div class="skill-category glass-card">
+                <h3>Database & Tools</h3>
+                <div class="tags">
+                    <span class="tag">MySQL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services section-padding">
+    <div class="container services-container reveal-up">
+        <div class="section-header text-center">
+            <h2>What I Do.</h2>
+            <p class="section-subtitle">Elevating brands through technology</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card glass-card hover-glow">
+                <div class="service-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>Building fast, responsive, and secure websites tailored to your specific needs.</p>
+            </div>
+
+            <div class="service-card glass-card hover-glow">
+                <div class="service-icon">⚡</div>
+                <h3>Performance Optimization</h3>
+                <p>Refactoring code and assets to ensure blazing fast load times.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Works Section -->
+<section id="works" class="works section-padding bg-alt">
+    <div class="container works-container reveal-up">
+        <div class="section-header text-center">
+            <h2>Featured Works.</h2>
+            <p class="section-subtitle">A showcase of my recent coding projects</p>
+        </div>
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card">
+                <div class="project-image {% if not project.thumbnail %}dark-gradient-{{ (loop.index0 % 3) + 1 }}{% endif %}">
+                    {% if project.thumbnail %}
+                        <img src="{{ project.thumbnail }}" alt="{{ project.title }}">
+                    {% endif %}
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>Project</span>
+                    </div>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    {% if project.live_link %}
+                        <a href="{{ project.live_link }}" class="project-link" target="_blank">
+                            View Project <span class="arrow">&rarr;</span>
+                        </a>
+                    {% else %}
+                        <span class="project-link" style="color: var(--text-muted); cursor: not-allowed;">
+                            Offline/Backend Project
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center" style="grid-column: 1 / -1; padding: 40px 0;">
+                <p style="color: var(--text-muted); font-size: 1.1rem;">No projects found.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
